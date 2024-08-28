@@ -19,14 +19,14 @@ namespace AccountRegistration
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            StudentInfoClass.FirstName = txtFirstName.Text;
-            StudentInfoClass.LastName = txtLastName.Text;
-            StudentInfoClass.MiddleName = txtMiddleName.Text;
-            StudentInfoClass.Address = txtAddress.Text;
-            StudentInfoClass.Program = comboBoxProgram.Text;
-            StudentInfoClass.Age = long.Parse(txtAge.Text);
-            StudentInfoClass.ContactNo = long.Parse(txtContactNo.Text);
-            StudentInfoClass.StudentNo = long.Parse(txtStudentNo.Text);
+            StudentInfoClass.FirstName = txtFirstName.Text.ToString();
+            StudentInfoClass.LastName = txtLastName.Text.ToString();
+            StudentInfoClass.MiddleName = txtMiddleName.Text.ToString();
+            StudentInfoClass.Address = txtAddress.Text.ToString();
+            StudentInfoClass.Program = comboBoxProgram.Text.ToString();
+            StudentInfoClass.Age = long.Parse(txtAge.Text.ToString());
+            StudentInfoClass.ContactNo = long.Parse(txtContactNo.Text.ToString());
+            StudentInfoClass.StudentNo = long.Parse(txtStudentNo.Text.ToString());
 
             FrmConfirm confirmForm = new FrmConfirm();
             var result = confirmForm.ShowDialog();
@@ -45,3 +45,4 @@ namespace AccountRegistration
         }
     }
 }
+
