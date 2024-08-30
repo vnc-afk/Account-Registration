@@ -21,7 +21,8 @@ namespace AccountRegistration
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Submitted successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
 
         public FrmConfirm()

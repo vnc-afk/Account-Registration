@@ -29,7 +29,7 @@ namespace AccountRegistration
         private void txtStudentNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow only numbers 
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -38,7 +38,7 @@ namespace AccountRegistration
         private void txtName_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow only letters and Roman numerals for last,first and middle names
-            if (!char.IsLetter(e.KeyChar) && !IsRomanNumeral(e.KeyChar) )
+            if (!char.IsLetter(e.KeyChar) && !IsRomanNumeral(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -47,7 +47,7 @@ namespace AccountRegistration
         private void txtAge_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Allow only numbers
-            if (!char.IsDigit(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -65,8 +65,8 @@ namespace AccountRegistration
 
         private void txtContactNo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow only numbers cause there is no a letters contact
-            if (!char.IsDigit(e.KeyChar))
+            // Allow only numbers cause there is no a letters in contact
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -93,6 +93,7 @@ namespace AccountRegistration
 
             if (ValidateFields())
             {
+               
                 StudentInfoClass.FirstName = txtFirstName.Text.ToString();
                 StudentInfoClass.LastName = txtLastName.Text.ToString();
                 StudentInfoClass.MiddleName = txtMiddleName.Text.ToString();
@@ -104,7 +105,7 @@ namespace AccountRegistration
 
                 FrmConfirm confirmForm = new FrmConfirm();
                 var result = confirmForm.ShowDialog();
-
+                this.Close();
                 if (result == DialogResult.OK)
                 {
                     txtFirstName.Clear();
@@ -117,6 +118,7 @@ namespace AccountRegistration
                     txtStudentNo.Clear();
                 }
             }
+            
             else
             {
                 MessageBox.Show("Please fill out all fields correctly before proceeding.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
