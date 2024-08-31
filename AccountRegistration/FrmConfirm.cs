@@ -11,17 +11,18 @@ using static StudentInfoClass;
 
 namespace AccountRegistration
 {
-    public delegate string DelegateText();
-    public delegate long DelegateNumber();
+    public delegate string DelegateText(string input);
+    public delegate long DelegateNumber(long input);
 
     public partial class FrmConfirm : Form
     {
-        private DelegateText DelProgram, DelLastName, DelFirstName, DelMiddleName, DelAddress;
+          private DelegateText DelProgram, DelLastName, DelFirstName, DelMiddleName, DelAddress;
         private DelegateNumber DelNumAge, DelNumContactNo, DelStudNo;
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Submitted successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DialogResult = DialogResult.OK;
+
             this.Close();
         }
 
@@ -41,14 +42,14 @@ namespace AccountRegistration
 
         private void FrmConfirm_Load(object sender, EventArgs e)
         {
-            lblProgram.Text = "Program: " + DelProgram();
-            lblLastName.Text = "Last Name: " + DelLastName();
-            lblFirstName.Text = "First Name: " + DelFirstName();
-            lblMiddleName.Text = "Middle Name: " + DelMiddleName();
-            lblAddress.Text = "Address: " + DelAddress();
-            lblAge.Text = "Age:" + DelNumAge().ToString();
-            lblContactNo.Text = "Contact No: " +DelNumContactNo().ToString();
-            lblStudentNo.Text = "Student No: " +DelStudNo().ToString();
+            lblProgram.Text = $"Program: {DelProgram(StudentInfoClass.Program)}";
+            lblLastName.Text = $"Last Name: {DelLastName(StudentInfoClass.LastName)}";
+            lblFirstName.Text = $"First Name: {DelFirstName(StudentInfoClass.FirstName)}";
+            lblMiddleName.Text = $"Middle Name: {DelMiddleName(StudentInfoClass.MiddleName)}";
+            lblAddress.Text = $"Address: {DelAddress(StudentInfoClass.Address)}";
+            lblAge.Text = $"Age: {DelNumAge(StudentInfoClass.Age)}";
+            lblContactNo.Text = $"Contact No: {DelNumContactNo(StudentInfoClass.ContactNo)}";
+            lblStudentNo.Text = $"Student No: {DelStudNo(StudentInfoClass.StudentNo)}";
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -65,6 +66,10 @@ namespace AccountRegistration
 
     public static class StudentInfoClass
     {
+        public delegate long DelegateNumber(long number);
+        public delegate string DelegateText(string txt);
+
+
         public static string FirstName = " ";
         public static string LastName = " ";
         public static string MiddleName = " ";
@@ -74,13 +79,14 @@ namespace AccountRegistration
         public static long ContactNo = 0;
         public static long StudentNo = 0;
 
-        public static string GetFirstName() => FirstName;
-        public static string GetLastName() => LastName;
-        public static string GetMiddleName() => MiddleName;
-        public static string GetAddress() => Address;
-        public static string GetProgram() => Program;
-        public static long GetAge() => Age;
-        public static long GetContactNo() => ContactNo;
-        public static long GetStudentNo() => StudentNo;
+
+        public static string GetProgram(string program) => program;
+        public static string GetLastName(string lastName) => lastName;
+        public static string GetFirstName(string firstName) => firstName;
+        public static string GetMiddleName(string middleName) => middleName;
+        public static string GetAddress(string address) => address;
+        public static long GetAge(long age) => age;
+        public static long GetContactNo(long contactNo) => contactNo;
+        public static long GetStudentNo(long studentNo) => studentNo;
     }
 }

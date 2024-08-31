@@ -105,7 +105,7 @@ namespace AccountRegistration
 
                 FrmConfirm confirmForm = new FrmConfirm();
                 var result = confirmForm.ShowDialog();
-                this.Close();
+        
                 if (result == DialogResult.OK)
                 {
                     txtFirstName.Clear();
